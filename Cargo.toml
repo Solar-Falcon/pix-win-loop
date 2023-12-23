@@ -1,6 +1,6 @@
 [package]
 name = "pix-win-loop"
-version = "0.1.0"
+version = "0.2.0"
 description = "GPU pixel buffer (using `pixels`), windowing (using `winit`), nice input handling and frame-rate-independent game loop all wrapped up in a neat little package."
 authors = ["Solar-Falcon"]
 edition = "2021"
@@ -25,7 +25,3 @@ features = ["rwh_05", "x11", "wayland", "wayland-dlopen", "wayland-csd-adwaita"]
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 pollster = "0.3"
-
-[features]
-default = []
-winit-event-loop-spawn = []

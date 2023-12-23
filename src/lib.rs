@@ -234,10 +234,6 @@ pub async fn start_async(
                         // blending_factor = accumulated_time.as_secs_f32() / context.target_frame_time.as_secs_f32();
 
                         if handle_error(app.render(&mut pixels), elwt).is_err() {
-                            return;
-                        }
-
-                        if handle_error(pixels.render().map_err(Into::into), elwt).is_err() {
                             #[allow(clippy::needless_return)]
                             // keep 'return' in case I add code after this and don't notice
                             return;
@@ -254,7 +250,7 @@ pub async fn start_async(
     };
 
     cfg_if! {
-        if #[cfg(all(target_arch = "wasm32", feature = "winit-event-loop-spawn"))] {
+        if #[cfg(target_arch = "wasm32")] {
             use winit::platform::web::EventLoopExtWebSys;
 
             event_loop.spawn(event_handler);

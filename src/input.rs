@@ -49,7 +49,7 @@ pub enum InputState {
     /// The button is being held down.
     Down,
     /// The button has just been released.
-    /// 
+    ///
     /// Note that it means that the key has **just** been released, **not** that it isn't held.
     Released,
 }

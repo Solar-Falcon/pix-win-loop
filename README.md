@@ -30,6 +30,9 @@ impl App for Application {
             pixel[3] = 255;
         }
 
+        // you can use pixels.render_with() for custom rendering
+        pixels.render()?;
+
         Ok(())
     }
 }
@@ -60,11 +63,5 @@ fn main() -> Result<()> {
 
 ```
 
-## Features
-
-* `winit-event-loop-spawn`: on web targets uses [`EventLoop::spawn()`][4] instead of [`EventLoop::run()`][3] for the main loop.
-
 [1]: https://crates.io/crates/pixels
 [2]: https://crates.io/crates/winit
-[3]: https://docs.rs/winit/0.29.5/winit/event_loop/struct.EventLoop.html#method.run
-[4]: https://docs.rs/winit/0.29.5/wasm32-unknown-unknown/winit/platform/web/trait.EventLoopExtWebSys.html#tymethod.spawn
