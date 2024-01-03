@@ -1,7 +1,7 @@
 [package]
 name = "pix-win-loop"
-version = "0.2.0"
-description = "GPU pixel buffer (using `pixels`), windowing (using `winit`), nice input handling and frame-rate-independent game loop all wrapped up in a neat little package."
+version = "0.3.0"
+description = "Windowing (using `winit`), nice input handling and frame-rate-independent game loop all wrapped up in a neat little package. Custom rendering support (`pixels` and `softbuffer` are available out of the box with a flick of a feature)"
 authors = ["Solar-Falcon"]
 edition = "2021"
 license = "MIT"
@@ -10,18 +10,8 @@ repository = "https://github.com/Solar-Falcon/pix-win-loop"
 readme = "README.md"
 
 [dependencies]
-cfg-if = "1"
-fnv = "1"
-log = "0.4"
 pixels = "0.13"
-thiserror = "1"
-web-time = "0.2"
-
-[dependencies.winit]
-version = "0.29"
-default-features = false
-# default options, but replaced 'rwh_06' with 'rwh_05'
-features = ["rwh_05", "x11", "wayland", "wayland-dlopen", "wayland-csd-adwaita"]
+win-loop = { version = "0.1", features = ["rwh_05"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 pollster = "0.3"

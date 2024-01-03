@@ -3,6 +3,12 @@
 GPU pixel buffer (using [`pixels`][1]), windowing (using [`winit`][2]), nice input handling and frame-rate-independent game loop all wrapped up in a neat little package.
 The game loop is based on <https://gafferongames.com/post/fix_your_timestep>.
 
+## Note
+
+The 'win-loop' part of the crate has moved on to the (unexpectedly named) `win-loop` crate in case you want to use another rendering, but want to keep the game loop.
+
+`pix-win-loop` v0.3.0 and further uses `win-loop`, but still keeps the 0.2 API.
+
 ## Small example
 
 ```no_run
