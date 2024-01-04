@@ -25,7 +25,7 @@ impl App for Application {
         Ok(())
     }
 
-    fn render(&mut self, pixels: &mut Pixels) -> Result<()> {
+    fn render(&mut self, pixels: &mut Pixels, _blending_factor: f64) -> Result<()> {
         // do rendering using pixels.
 
         let mut frame = pixels.frame_mut();

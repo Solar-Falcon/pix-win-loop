@@ -1,11 +1,6 @@
 #![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/README.md"))]
 #![warn(missing_docs)]
 
-/*
-Possible TODO:
-* update README (win-loop info)
-*/
-
 pub use pixels;
 pub use pixels::Pixels;
 pub use win_loop::anyhow::{Error, Result};
@@ -19,8 +14,8 @@ pub use win_loop::{Context, Duration, Input, InputState};
 
 use pixels::SurfaceTexture;
 use win_loop::winit::{
-    event_loop::EventLoop,
     event::{Event, WindowEvent},
+    event_loop::EventLoop,
     window::WindowId,
 };
 
@@ -32,7 +27,7 @@ pub trait App {
 
     /// Application render.
     /// Will be called once every frame.
-    fn render(&mut self, pix: &mut Pixels) -> Result<()>;
+    fn render(&mut self, pix: &mut Pixels, blending_factor: f64) -> Result<()>;
 
     /// Custom event handler if needed.
     #[inline]
@@ -126,25 +121,25 @@ where
     }
 
     #[inline]
-    fn render(&mut self, ctx: &mut Self::RenderContext) -> Result<()> {
+    fn render(&mut self, ctx: &mut Self::RenderContext, blending_factor: f64) -> Result<()> {
         if let Some(new_size) = self.resize_order {
             ctx.resize_surface(new_size.width, new_size.height)?;
 
             self.resize_order = None;
         }
 
-        self.app.render(ctx)
+        self.app.render(ctx, blending_factor)
     }
 
     #[inline]
     fn handle(&mut self, event: &Event<()>) -> Result<()> {
         match event {
-            Event::WindowEvent { window_id, event } if *window_id == self.win_id => match event {
-                WindowEvent::Resized(new_size) => {
-                    self.resize_order = Some(*new_size);
-                }
-                _ => {}
-            },
+            Event::WindowEvent {
+                window_id,
+                event: WindowEvent::Resized(new_size),
+            } if *window_id == self.win_id => {
+                self.resize_order = Some(*new_size);
+            }
             _ => {}
         }
 

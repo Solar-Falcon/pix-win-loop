@@ -1,6 +1,6 @@
 [package]
 name = "pix-win-loop"
-version = "0.3.0"
+version = "0.4.0"
 description = "Windowing (using `winit`), nice input handling and frame-rate-independent game loop all wrapped up in a neat little package. Custom rendering support (`pixels` and `softbuffer` are available out of the box with a flick of a feature)"
 authors = ["Solar-Falcon"]
 edition = "2021"
@@ -11,7 +11,7 @@ readme = "README.md"
 
 [dependencies]
 pixels = "0.13"
-win-loop = { version = "0.1", features = ["rwh_05"] }
+win-loop = { version = "0.3", features = ["rwh_05"] }
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 pollster = "0.3"
